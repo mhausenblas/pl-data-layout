@@ -44,7 +44,7 @@
 \maketitle
 
 \begin{abstract}
-In this short note I review and discuss principled options for physical and
+In this short note I review and discuss fundamental options for physical and
 logical data layouts as well as implications on data processing at large scales.
 I should say in advance that these notes offer no new insights, that is, 
 everything stated here has already been published elsewhere. In fact, it has
@@ -55,6 +55,19 @@ place.
 
 \section{Motivation}
 \label{sec:mot}
+Data processing and management systems such as databases, datastores or query 
+engines usually have to answer to two kinds of entities: \emph{humans} and 
+\emph{hardware}. 
+Towards humans, they provide means to query, manipulate or 
+manage\footnote{The management aspect can span a wide range of activities 
+including but not limited to snapshots, mirroring, etc.} data.
+Towards the hardware, they issue store and retrieve commands. They depend 
+directly or indirectly on the very nature of the hardware. Almost all systems---
+for example, Hadoop's distributed file system---are designed with strong though
+not necessarily explicit assumptions about the underlying hardware such as hard 
+disk drives\footnote{More at \url{http://queue.acm.org/detail.cfm?id=1317403}}, 
+their spindles, heads, etc.
+
 Conceptually, there are three levels present in data management systems
 (Fig.~\ref{fig:data-layers}):
 \begin{figure}[h!]
@@ -70,9 +83,9 @@ to provide a way to interact with the data under management. This can be
 something elaborate, standardised and mature as the Structured Query Language 
 (SQL) found in relational database management systems (RDBMS), such as 
 Oracle DB, PostgreSQL, or MySQL. This can be a RESTful interface, found in many 
-NoSQL datastores, like, for example, CouchDB's API\footnote{See online 
-documentation at \url{http://wiki.apache.org/couchdb/HTTP_Document_API}}. Of
-course, this can also be a programming-language-level API such as the case with
+NoSQL datastores, like, for example, CouchDB's API\footnote{See documentation at
+\url{http://wiki.apache.org/couchdb/HTTP_Document_API}}. Of course, this can 
+also be a programming-language-level API such as the case with
 Hadoop\footnote{\url{http://hadoop.apache.org/docs/current/api/org/apache/hadoop
 /mapreduce/package-summary.html}}.
 \item The \emph{Logical Data Layout} level.
