@@ -44,35 +44,28 @@
 \maketitle
 
 \begin{abstract}
-This article discusses principled options for physical and logical data layouts
-and their implications on data processing at large scales. I should say in 
-advance that these notes offer no new insights, that is, everything stated here 
-has already been published elsewhere. In fact, it has been published in so many 
-different places, such as blog posts, in the literature, mentioned at talks, 
-spread over YouTube and Vimeo videos, uttered in hallway discussions and 
-various whiteboards that its main contribution is to bring it all together in 
-one place. The reader is expected to have a basic understanding in data 
-management, databases and datastores as well as datashapes in general.
+In this short note I review and discuss principled options for physical and
+logical data layouts as well as implications on data processing at large scales.
+I should say in advance that these notes offer no new insights, that is, 
+everything stated here has already been published elsewhere. In fact, it has
+been published in so many different places, such as blog posts, in the 
+literature, etc. that the main contribution is to bring it all together in one
+place.
 \end{abstract}
 
 \section{Motivation}
 \label{sec:mot}
-In the following short note I shall review and discuss data layouts on a 
-principled level. While no new concepts or insights are presented, the note
-offers an overview and principled understanding of underlying mechanisms 
-concerning data management.
-
+Conceptually, there are three levels present in data management systems
+(Fig.~\ref{fig:data-layers}):
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{data-layers}
-\caption{The three layers of data representation and interaction.}
+\includegraphics[width=0.7\textwidth]{data-layers}
+\caption{The three levels of data representation and interaction in data 
+management systems, including examples for each of the levels.}
 \label{fig:data-layers}
 \end{figure}
-
-Conceptually, there are three levels in data management systems as shown in
-Figure~\ref{fig:data-layers}:
 \begin{itemize}
-	\item The \emph{User Interface} level. Any database or datastore needs 
+\item The \emph{User Interface} level. Any database or datastore needs 
 to provide a way to interact with the data under management. This can be 
 something elaborate, standardised and mature as the Structured Query Language 
 (SQL) found in relational database management systems (RDBMS), such as 
@@ -81,8 +74,13 @@ NoSQL datastores, like, for example, CouchDB's API\footnote{See online
 documentation at \url{http://wiki.apache.org/couchdb/HTTP_Document_API}}. Of
 course, this can also be a programming-language-level API such as the case with
 Hadoop\footnote{\url{http://hadoop.apache.org/docs/current/api/org/apache/hadoop
-/mapreduce/package-summary.html}}
+/mapreduce/package-summary.html}}.
+\item The \emph{Logical Data Layout} level.
+\item The \emph{Physical Data Layout} level.
 \end{itemize}
+
+
+
 
 \section{Manifestations of Data Layouts}
 \label{sec:mani}
