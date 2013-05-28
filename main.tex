@@ -124,23 +124,23 @@ logical and physical level across SQL and NoSQL data management systems.}
 Each data item is stored exactly in one place.&
 The data items are repeated as needed.\\
 \hline
-\emph{advantage}&
-Built-in data integrity and storage-efficient.&
+\emph{advantages}&
+Built-in data integrity and storage-efficiency.&
 Fast, entity-centric data access without the need for joins.\\
 \hline
-\emph{disadvantage} &
+\emph{disadvantages} &
 Joints are costly and hard to implement (esp. distributed).&
 Inflexible and storage-hungry.\\
 \hline
+\emph{workloads} &
+OLTP, write-intensive&
+OLAP, read-intensive\\
 \hline
-\emph{SQL} &
-OLTP, write-intensive workloads &
-OLAP, read-intensive workloads\\
-\hline
-\emph{NoSQL} &
-wide-column (BigTable/HBase, Dynamo/Cassandra) &
-document-oriented data stores (MongoDB, CouchDB), key-value stores (Redis, 
-Memcached, etc.), GraphDBs (Neo4j, RDF stores)\\
+\emph{examples} &
+Classical, textbook relational database modelling&
+Wide-column datastores (HBase, Cassandra), document-oriented 
+datastores (MongoDB, CouchDB), key-value datastores (Redis, Memcached, etc.),
+graph databases (Neo4j, RDF stores), large-scale relational databases\\
 \hline
 \hline
 \end{tabular}
