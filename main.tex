@@ -13,24 +13,10 @@
 \usepackage{latexsym}
 \usepackage{rotating} 
 \usepackage{enumitem}
-
 \usepackage{verbatim}
 \usepackage{url}
-\usepackage{multirow} 
-
-
-\usepackage{colortbl}
-\usepackage[table]{xcolor}
-
-\makeatletter
-\renewcommand{\thetable}{\thesection.\@arabic\c@table}
-\@addtoreset{table}{section}
-\makeatother
-
-
-\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45} 
-\newcommand{\dv}[1] {\textcolor{blue}{[DV]\textit{#1}}}
-\newcommand{\bo}[1] {\textcolor{MyDarkBlue}{[BO]\textit{#1}}}
+\usepackage{multirow}
+\usepackage{chngcntr}
 
 \begin{document}
 
@@ -94,8 +80,8 @@ Hadoop\footnote{\url{http://hadoop.apache.org/docs/current/api/org/apache/hadoop
 
 \section{Manifestations of Data Layouts}
 \label{sec:mani}
-In~\cite{Hausenblas:arxiv2012} we introduced the three basic data shapes:
-
+In~\cite{Hausenblas:arxiv2012} we introduced the three fundamental data shapes
+\emph{tabular}, \emph{tree} or henceforth \emph{nested}, and \emph{graph}.
 
 
 \begin{figure}[h!]
@@ -107,14 +93,60 @@ community.}
 \label{fig:taxonomy-dl}
 \end{figure}
 
-\section{Logical Layouts}
-\label{sec:loglay}
 
-\section{Physical Layouts}
-\label{sec:phylay}
+Normalised:
+\begin{itemize}
+	\item No need to handle duplicates on update.
+	\item Built-in data integrity.
+	\item Storage efficient (takes less disk space).
+\end{itemize}
 
-\section{Layering Physical and Logical Layouts}
-\label{sec:laylay}
+Denormalised:
+\begin{itemize}
+	\item Data access is fast.
+	\item Provides entity-centric view.
+	\item No joins necessary (pre-joined).
+\end{itemize}
+
+Summarised in Table~\ref{tab:ndcomparison}.
+
+\begin{center}
+\begin{table}
+\caption{A comparison of normalised vs. denormalised handling of data on the 
+logical and physical level across SQL and NoSQL data management systems.}
+\label{tab:ndcomparison}
+\begin{tabular}{l @{\hskip 2mm} p{0.40\linewidth} @{\hskip 5mm}
+	            p{0.40\linewidth} @{\hskip 2mm}}
+& \textbf{NORMALISED}& \textbf{DENORMALISED}\\
+\hline
+\hline
+\emph{characteristics}&
+Each data item is stored exactly in one place.&
+The data items are repeated as needed.\\
+\hline
+\emph{advantage}&
+Built-in data integrity and storage-efficient.&
+Fast, entity-centric data access without the need for joins.\\
+\hline
+\emph{disadvantage} &
+Joints are costly and hard to implement (esp. distributed).&
+Inflexible and storage-hungry.\\
+\hline
+\hline
+\emph{SQL} &
+OLTP, write-intensive workloads &
+OLAP, read-intensive workloads\\
+\hline
+\emph{NoSQL} &
+wide-column (BigTable/HBase, Dynamo/Cassandra) &
+document-oriented data stores (MongoDB, CouchDB), key-value stores (Redis, 
+Memcached, etc.), GraphDBs (Neo4j, RDF stores)\\
+\hline
+\hline
+\end{tabular}
+\centering
+\end{table}
+\end{center}
 
 
 \section{Impact on Data Processing at Scale}
