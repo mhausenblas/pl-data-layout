@@ -16,7 +16,7 @@ This is an article to be published on arxiv.org about the principled options for
 
 ## TODO
 
-* get template from mhausenblas/data-shapes
-* init, push to GitHub
+* get template from mhausenblas/data-shapes--DONE
+* init, push to GitHub--DONE
 * write (5p max)
 * publish on arxiv.org
